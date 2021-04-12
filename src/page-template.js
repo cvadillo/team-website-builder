@@ -1,10 +1,10 @@
 const generateEmployee = employee => {
     if (employee.getRole() === 'Engineer') {
-        return `<div class="col s12 m6">
-                    <div class="card blue-grey darken-1">
+        return `<div class="col s12 m4">
+                    <div class="card">
                         <div class="card-content white-text">
-                            <span class="card-title">${employee.name}</span>
-                            <p>Engineer</p>
+                            <span class="card-title black-text"><i class="material-icons">engineering</i> ${employee.name}</span>
+                            <p class="black-text">Engineer</p>
                         </div>
                         <div class="card-action">
                             <ul>
@@ -18,17 +18,17 @@ const generateEmployee = employee => {
     };
 
     if (employee.getRole() === 'Intern') {
-        return `<div class="col s12 m6">
-                    <div class="card blue-grey darken-1">
+        return `<div class="col s12 m4">
+                    <div class="card">
                         <div class="card-content white-text">
-                            <span class="card-title">${employee.name}</span>
-                            <p>Intern</p>
+                            <span class="card-title black-text"><i class="material-icons">engineering</i> ${employee.name}</span>
+                            <p class="black-text">Intern</p>
                         </div>
                         <div class="card-action">
                             <ul>
                                 <li>Employee ID: ${employee.id}</li>
                                 <li><a href = "mailto: ${employee.email}">${employee.email}</a></li>
-                                <li>School: ${employee.school}</li>
+                                <li>Github: ${employee.school}</li>
                             </ul>
                         </div>
                     </div>
@@ -38,41 +38,64 @@ const generateEmployee = employee => {
 
 const generatePage = manager => {
     return `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Team Profile Generator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="../src/style.css">
-</head>
-<body>
-    <header>
-        <h1> My Team </h1>
-    </header>
-    <main>
-        <div class="row">
-            <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">${manager.name}</span>
-                        <p>Manager</p>
-                    </div>
-                    <div class="card-action">
-                        <ul>
-                            <li>Employee ID: ${manager.id}</li>
-                            <li><a href = "mailto: ${manager.email}">${manager.email}</a></li>
-                            <li>Office number: ${manager.officeNumber}</li>
-                        </ul>
+<html class="no-js" lang="">
+
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta property="og:title" content="">
+        <meta property="og:type" content="">
+        <meta property="og:url" content="">
+        <meta property="og:image" content="">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- LINK THE RIGHT STYLE SHEETS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="../src/style.css">
+        <!-- DID YOU REMEMBER TO LINK THE RIGHT SHEETS? -->
+
+        <meta name="theme-color" content="#fafafa">
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <div class="nav-wrapper blue">
+                    <a href="#" class="brand-logo center blue">My Team</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Add your site or application content here -->
+        <main class="container">
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-content white-text">
+                            <span class="card-title black-text"><i class="material-icons">coffee</i>${manager.name}</span>
+                            <p class="black-text">Manager</p>
+                        </div>
+                        <div class="card-action">
+                             <ul>
+                                <li>Employee ID: ${manager.id}</li>
+                                <li><a href = "mailto: ${manager.email}">${manager.email}</a></li>
+                                <li>Office number: ${manager.officeNumber}</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                ${generateEmployee(manager.team[0])}
             </div>
-            ${generateEmployee(manager.team[0])}
-        </div>
-    </main>
-  </body>
-  </html>`
+        </main>
+    </body>
+</html>`
 };
 
 module.exports = generatePage;
